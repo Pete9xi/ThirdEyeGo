@@ -3,8 +3,6 @@ package text
 import (
 	"fmt"
 
-	"thirdeyego/discord"
-
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
 
@@ -20,7 +18,7 @@ func (h *Handler) handlePlayerJoinLeave(p *packet.Text) {
 
 		fmt.Println(message)
 
-		if err := discord.SendMessage(h.cfg.Channel, message); err != nil {
+		if err := h.discord.SendMessage(h.cfg.Channel, message); err != nil {
 			fmt.Println("Failed to send Discord message:", err)
 		}
 
@@ -34,7 +32,7 @@ func (h *Handler) handlePlayerJoinLeave(p *packet.Text) {
 
 		fmt.Println(message)
 
-		if err := discord.SendMessage(h.cfg.Channel, message); err != nil {
+		if err := h.discord.SendMessage(h.cfg.Channel, message); err != nil {
 			fmt.Println("Failed to send Discord message:", err)
 		}
 

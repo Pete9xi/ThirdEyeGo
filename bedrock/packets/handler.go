@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"thirdeyego/bedrock/packets/text"
 	"thirdeyego/config"
+	"thirdeyego/discord"
 
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
@@ -12,19 +13,25 @@ import (
 type Handler struct {
 	cfg         config.Config
 	textHandler *text.Handler
+	discord     *discord.Client
 }
 
-func NewHandler(cfg config.Config) *Handler {
+func NewHandler(cfg config.Config, discordClient *discord.Client) *Handler {
 	return &Handler{
 		cfg:         cfg,
-		textHandler: text.NewHandler(cfg),
+		textHandler: text.NewHandler(cfg, discordClient),
+		discord:     discordClient,
 	}
 }
 
-func StartPacketLoop(conn *minecraft.Conn, cfg config.Config) {
+func StartPacketLoop(
+	conn *minecraft.Conn,
+	cfg config.Config,
+	discordClient *discord.Client,
+) {
 	fmt.Println("Starting packet handler...")
 
-	handler := NewHandler(cfg)
+	handler := NewHandler(cfg, discordClient)
 
 	for {
 		pk, err := conn.ReadPacket()

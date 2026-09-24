@@ -2,17 +2,20 @@ package text
 
 import (
 	"thirdeyego/config"
+	"thirdeyego/discord"
 
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
 
 type Handler struct {
-	cfg config.Config
+	cfg     config.Config
+	discord *discord.Client
 }
 
-func NewHandler(cfg config.Config) *Handler {
+func NewHandler(cfg config.Config, discordClient *discord.Client) *Handler {
 	return &Handler{
-		cfg: cfg,
+		cfg:     cfg,
+		discord: discordClient,
 	}
 }
 

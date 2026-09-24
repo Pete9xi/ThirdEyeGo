@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"thirdeyego/bedrock"
 	"thirdeyego/config"
-	"thirdeyego/discord"
 )
 
 func main() {
@@ -21,11 +20,6 @@ func main() {
 
 	if token == "" {
 		fmt.Println("DISCORD_TOKEN is not set")
-		return
-	}
-
-	if err := discord.Start(token); err != nil {
-		fmt.Println("Failed to start Discord:", err)
 		return
 	}
 

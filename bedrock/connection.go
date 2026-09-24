@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"thirdeyego/bedrock/packets"
 	"thirdeyego/config"
+	"thirdeyego/discord"
 	"time"
 
 	"github.com/sandertv/gophertunnel/minecraft"
@@ -12,6 +13,7 @@ import (
 
 func StartBot(cfg config.Config) error {
 	serverAddress := fmt.Sprintf("%s:%d", cfg.IP, cfg.Port)
+
 	tokenSource, err := getTokenSource()
 	if err != nil {
 		return fmt.Errorf("authentication: %w", err)
@@ -48,7 +50,12 @@ func StartBot(cfg config.Config) error {
 
 	fmt.Println("Connected and spawned into the world!")
 
-	packets.StartPacketLoop(conn, cfg)
+	discordClient, err := discord.Start(cfg.Token, conn)
+	if err != nil {
+		return fmt.Errorf("start Discord: %w", err)
+	}
+
+	packets.StartPacketLoop(conn, cfg, discordClient)
 
 	return nil
 }

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strings"
 	"thirdeyego/bedrock/utils"
-	"thirdeyego/discord"
 
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
@@ -38,7 +37,7 @@ func (h *Handler) handleAntiCheatPacket(p *packet.Text) {
 		message = utils.AutoCorrect(message)
 
 		// Forward the message to the configured Discord channel.
-		if err := discord.SendMessage(h.cfg.AntiCheatLogsChannel, message); err != nil {
+		if err := h.discord.SendMessage(h.cfg.AntiCheatLogsChannel, message); err != nil {
 			fmt.Println("Failed to send Discord message:", err)
 		}
 
