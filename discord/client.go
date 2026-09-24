@@ -19,11 +19,10 @@ type Client struct {
 }
 
 func Start(
-	token string,
 	conn *minecraft.Conn,
 	cfg config.Config,
 ) (*Client, error) {
-	session, err := discordgo.New("Bot " + token)
+	session, err := discordgo.New("Bot " + cfg.Token)
 	if err != nil {
 		return nil, err
 	}
