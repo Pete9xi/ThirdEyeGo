@@ -40,6 +40,10 @@ func (client *Client) SendMessage(channelID string, message string) error {
 	_, err := client.Session.ChannelMessageSend(channelID, message)
 	return err
 }
+func (client *Client) SendEmbed(channelID string, embed *discordgo.MessageEmbed) error {
+	_, err := client.Session.ChannelMessageSendEmbed(channelID, embed)
+	return err
+}
 
 func (client *Client) handleMessageCreate(
 	session *discordgo.Session,
@@ -51,9 +55,10 @@ func (client *Client) handleMessageCreate(
 
 	fmt.Printf("[Discord] %s: %s\n", message.Author.Username, message.Content)
 	cmd := fmt.Sprintf(
-		`/tellraw @a {"rawtext":[{"text":"§8[§9Discord§8] §f%s: §f%s"}]}`,
+		`/tellraw @a {"rawtext":[{"text":"§8[§9Discord§8] §7%s: §f%s"}]}`,
 		message.Author.Username,
 		message.Content,
 	)
+
 	utils.RunCMD(client.Conn, cmd)
 }

@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"thirdeyego/bedrock/utils"
+	"thirdeyego/discord"
 
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
@@ -70,6 +71,20 @@ func (h *Handler) handleObject(p *packet.Text) {
 	message = utils.AutoCorrect(message)
 
 	fmt.Println("[In Game]", message)
+
+	if h.cfg.UseEmbed {
+		embed := discord.CreateEmbed(discord.EmbedOptions{
+			Title:       h.cfg.SetTitle,
+			Description: "[In Game] " + message,
+			Color:       h.cfg.SetColor,
+		})
+
+		if err := h.discord.SendEmbed(h.cfg.Channel, embed); err != nil {
+			fmt.Println("Failed to send Discord embed:", err)
+		}
+
+		return
+	}
 
 	// Forward the message to the configured Discord channel.
 	if err := h.discord.SendMessage(h.cfg.Channel, "[In Game] "+message); err != nil {
