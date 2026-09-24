@@ -7,9 +7,9 @@ Currently added:
 - In game chat sent to discord
 - Anticheat logs sent to discord (based on ThirdEye written in TypeScript.)
 - Discord to ingame chat.
+- Embed Support.
 
 Todo
-- Embeds
 - Voice 
 - Anticheat command execution
 - Minecraft slash command execution
