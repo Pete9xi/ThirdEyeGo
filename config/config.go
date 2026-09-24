@@ -31,10 +31,11 @@ type Config struct {
 	VoiceAdminRoleID          string   `json:"voiceAdminRoleID"`
 	LogBadActors              bool     `json:"logBadActors"`
 	LogoURL                   string   `json:"logoURL"`
-	OperatorsRole             string   `json:"operatorsRole"`
+	OperatorsRoleID           string   `json:"operatorsRoleID"`
 	ProfanityLogsChannel      string   `json:"profanityLogsChannel"`
 	ProfanityFilter           bool     `json:"profanityFilter"`
 	Debug                     bool     `json:"Debug"`
+	IsDev                     bool     `json:"isDev"`
 }
 
 func Default() Config {
@@ -63,10 +64,11 @@ func Default() Config {
 		VoiceAdminRoleID:          "",
 		LogBadActors:              true,
 		LogoURL:                   "https://i.imgur.com/XfoZ8XS.jpg",
-		OperatorsRole:             "Operators",
+		OperatorsRoleID:           "",
 		ProfanityLogsChannel:      "",
 		ProfanityFilter:           true,
 		Debug:                     false,
+		IsDev:                     false,
 	}
 }
 

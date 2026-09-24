@@ -50,7 +50,7 @@ func StartBot(cfg config.Config) error {
 
 	fmt.Println("Connected and spawned into the world!")
 
-	discordClient, err := discord.Start(cfg.Token, conn)
+	discordClient, err := discord.Start(cfg.Token, conn, cfg)
 	if err != nil {
 		return fmt.Errorf("start Discord: %w", err)
 	}
