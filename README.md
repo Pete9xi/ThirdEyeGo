@@ -6,9 +6,10 @@ Currently added:
 - Player leave message sent to discord
 - In game chat sent to discord
 - Anticheat logs sent to discord (based on ThirdEye written in TypeScript.)
+- Discord to ingame chat.
 
 Todo
-- Discord to ingame chat
 - Embeds
 - Voice 
-
+- Anticheat command execution
+- Minecraft slash command execution
