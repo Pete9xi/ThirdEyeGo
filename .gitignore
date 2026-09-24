@@ -1,0 +1,11 @@
+token.json
+config.json
+.env
+
+# Go
+*.exe
+*.out
+
+# IDE
+.vscode/
+.idea/
