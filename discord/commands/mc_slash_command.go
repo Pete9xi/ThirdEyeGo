@@ -9,7 +9,7 @@ import (
 
 var minecraftCommand = Command{
 	Data: &discordgo.ApplicationCommand{
-		Name:        "minecraftCommand",
+		Name:        "servercommand",
 		Description: "executes a command on the Minecraft server",
 
 		Options: []*discordgo.ApplicationCommandOption{
